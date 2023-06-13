@@ -36,16 +36,16 @@ header h2 {
 
 /*背景⾊には以下を指定する*/
 
-#block1 {
-  background-color: #ffbf00; 
+#kintone {
+  background-color: #ffbf00;
 }
-#block2 {
+#office {
   background-color: #1992d4;
 }
-#block3 {
+#garoon {
   background-color: #003399;
 }
-#block4 {
+#mailwise {
   background-color: #df4356;
 }
 
@@ -60,9 +60,6 @@ CSSの max-width プロパティを使用します*/
   max-width: 90%; /* 画像の横幅に設定 */
   height: auto; /* 縦横比を維持するために高さを自動に設定 */
   /* 画像には上下左右にマージンを設定する */
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 50px;
-  margin-right: 50px;
+  margin:10px 50px;
 }
 
