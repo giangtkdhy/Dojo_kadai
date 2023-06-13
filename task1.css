@@ -1,0 +1,68 @@
+/* ここに記載する */
+
+/* 以下は修正しない */
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+header {
+  background-color: #1aaedb;
+  border-bottom: #ead963 6px solid;
+}
+.container {
+  padding: 16px;
+  padding-left: 120px;
+}
+header h1,
+header h2 {
+  margin: 0;
+  color: #fff ;
+  line-height: 1;
+}
+header h1 {
+  padding: 30px 0 5px 0;
+  font-size: 24px;
+  border-bottom: 1px dotted #fff;
+  font-weight: 500;
+}
+header h2 {
+  padding: 6px 0 0 0;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* 解答はここからです*/
+
+/*背景⾊には以下を指定する*/
+
+#block1 {
+  background-color: #ffbf00; 
+}
+#block2 {
+  background-color: #1992d4;
+}
+#block3 {
+  background-color: #003399;
+}
+#block4 {
+  background-color: #df4356;
+}
+
+/*画像は中央に配置する*/
+.image-block {
+  text-align: center;
+}
+
+/*画像の横幅をブラウザの横幅に合わせて可変させるには、
+CSSの max-width プロパティを使用します*/
+.image-container img {
+  max-width: 90%; /* 画像の横幅に設定 */
+  height: auto; /* 縦横比を維持するために高さを自動に設定 */
+  /* 画像には上下左右にマージンを設定する */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
