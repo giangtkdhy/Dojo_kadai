@@ -54,12 +54,13 @@ header h2 {
   text-align: center;
 }
 
-/*画像の横幅をブラウザの横幅に合わせて可変させるには、
-CSSの max-width プロパティを使用します*/
+/*画像の横幅をブラウザの横幅に合わせて可変させるには、*/
 .image-container img {
-  max-width: 90%; /* 画像の横幅に設定 */
-  height: auto; /* 縦横比を維持するために高さを自動に設定 */
-  /* 画像には上下左右にマージンを設定する */
+  max-width: 90%;
+  height: auto;
   margin:10px 50px;
 }
+
+
+
 
