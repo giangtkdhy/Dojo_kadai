@@ -116,10 +116,9 @@
       };
       Object.keys(fileManage).forEach((key) => {
         const folder = fileManage[key];
-        const keys = ["folderName", "viewAuth", "editAuth", "deleteAuth"];
-        keys.forEach((nameKey) => {
-          const aTai = document.getElementById(`${key}-${nameKey}`);
-          aTai.textContent = folder[nameKey];
+        Object.keys(folder).forEach((nameKey) => {
+          const cell_element = document.getElementById(`${key}-${nameKey}`);
+          cell_element.textContent = folder[nameKey];
         });
         if (folder.viewAuth === "Everyone") {
           const listItem = document.createElement("li");
