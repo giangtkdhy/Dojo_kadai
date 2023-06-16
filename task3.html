@@ -114,30 +114,20 @@
           deleteAuth: "営業部",
         },
       };
-      console.log(fileManage);
-      /*⼿順3-2*/
       Object.keys(fileManage).forEach((key) => {
-        /*位置をidで指定して、変数を設定*/
-        const folderNameCl = document.getElementById(`${key}-folderName`);
-        const viewAuthCl = document.getElementById(`${key}-viewAuth`);
-        const editAuthCl = document.getElementById(`${key}-editAuth`);
-        const deleteAuthCl = document.getElementById(`${key}-deleteAuth`);
         const folder = fileManage[key];
-        /*各位置に値を入れる*/
-        folderNameCl.textContent = folder.folderName;
-        viewAuthCl.textContent = folder.viewAuth;
-        editAuthCl.textContent = folder.editAuth;
-        deleteAuthCl.textContent = folder.deleteAuth;
-
-        /*⼿順3-3*/
+        const keys = ["folderName", "viewAuth", "editAuth", "deleteAuth"];
+        keys.forEach((nameKey) => {
+          const aTai = document.getElementById(`${key}-${nameKey}`);
+          aTai.textContent = folder[nameKey];
+        });
         if (folder.viewAuth === "Everyone") {
-          const listItem = document.createElement("li"); //Javascriptでlist element作る
+          const listItem = document.createElement("li");
           listItem.textContent = folder.folderName;
-          list.appendChild(listItem); //指定された親ノードの子ノードリストの末尾にノードを追加
+          list.appendChild(listItem);
         }
       });
       console.log(fileManage);
-      /*⼿順3-3*/
     </script>
   </body>
 </html>
