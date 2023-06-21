@@ -1,0 +1,7 @@
+{
+  "liveServer.settings.https": {
+    "enable": true,
+    "cert": "/Users/j002746/Documents/大切/localhost+2.pem",
+    "key": "/Users/j002746/Documents/大切/localhost+2-key.pem"
+  }
+}
