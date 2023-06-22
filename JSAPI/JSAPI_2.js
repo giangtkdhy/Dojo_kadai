@@ -1,5 +1,4 @@
 (function() {
-  
   "use strict";
   const products = { "kintone": "KN", "Garoon": "GR", "サイボウズ Office": "OF", "Mailwise": "MW" };
   const productCell = "サイボウズ製品";
@@ -9,35 +8,20 @@
   function formatDate(date) {
     return dateFns.format(date, "YYYYMMDD");
   }
-
-  kintone.events.on(["app.record.create.change." + productCell, "app.record.edit.change." + productCell,
-    "app.record.create.change." + numCell, "app.record.edit.change." + numCell
-  ], function(event) {
-    var record = event.record;
-    var product = record[productCell].value;
-    var num = record[numCell].value;
-    var dupField = record[dupCellCode];
+ //レコード作成時および編集時のイベントで呼び出される関数
+  function checkDup(event) {
+    const record = event.record;
+    const product = record[productCell].value;
+    const num = record[numCell].value;
+    const dupField = record[dupCellCode];
 
     if (product && num) {
       const formattedDate = formatDate(new Date());
       const productOmit = products[product];
       const formatValue = formattedDate + "-" + productOmit + "-" + num;
       dupField.value = formatValue;
- // subject 変数の定義: productField と numField の値を使用して、クエリ文字列を作成
-      var subject = productCell + '="' + product + '" and ' + numCell + '="' + num + '"';
-//アプリID、クエリ、および重複禁止項目のフィールドコードを設定します。
-      var params = {
-        app: kintone.app.getId(),
-        query: subject,
-        fields: [dupCellCode]
-      };
-//取得リクエストを送信
-      kintone.api(kintone.api.url('/k/v1/records', true), 'GET', params, function(resp) {
-        dupCell.error = resp.records.length > 0 ? '重複するよ' : null;
-      });
     } else {
-      dupCell.value = "";
-      dupCell.error = null;
+      dupField.value = "";
     }
     return event;
   }
