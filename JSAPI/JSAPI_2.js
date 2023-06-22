@@ -5,7 +5,7 @@
   const numCell = "管理番号";
   const dupCellCode = "重複禁止項目_文字列";
 
- //レコード作成時および編集時のイベントで呼び出される関数
+  //レコード作成時および編集時のイベントで呼び出される関数
   function checkDup(event) {
     const record = event.record;
     const product = record[productCell].value;
@@ -13,7 +13,7 @@
     const dupField = record[dupCellCode];
 
     if (product && num) {
-      dateFns.format(date, "YYYYMMDD")
+      const formattedDate = dateFns.format(new Date(), "YYYYMMDD");
       const productOmit = products[product];
       const formatValue = formattedDate + "-" + productOmit + "-" + num;
       dupField.value = formatValue;
