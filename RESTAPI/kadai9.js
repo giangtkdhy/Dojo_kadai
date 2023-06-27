@@ -16,9 +16,10 @@
       if (!isDuplicate) {
         return event;
       }
-      const confirmed = confirm("レコードが重複しています。このまま保存しますか？");
-      if (!confirmed) {
+      const isConfirmed = confirm("レコードが重複しています。このまま保存しますか？");
+      if (!isConfirmed) {
         return false;
       }
     });
   })();
+  
