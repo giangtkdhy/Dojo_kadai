@@ -10,15 +10,16 @@
     }
     // レコード保存時のイベントで呼び出される関数
     kintone.events.on(["app.record.create.submit", "app.record.edit.submit"], async function(event) {
-      const duplicateProhibitedItem =  event.record[dupCell].value;
+      const duplicateProhibitedItem = event.record[dupCell].value;
       // 重複チェック
       const isDuplicate = await checkDup(duplicateProhibitedItem);
       if (!isDuplicate) {
         return event;
       }
-      const confirmed = confirm("レコードが重複しています。このまま保存しますか？");
-      if (!confirmed) {
+      const isConfirmed = confirm("レコードが重複しています。このまま保存しますか？");
+      if (!isConfirmed) {
         return false;
       }
     });
   })();
+  
