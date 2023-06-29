@@ -12,9 +12,17 @@
     </table>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
+      // タイトルを短くにする関数
+      function sortedTitle(title, maxLength) {
+        if (title.length > maxLength) {
+          return title.substring(0, maxLength) + "...";
+        }
+        return title;
+      }
+
       // データを取得する関数
-      function getData() {
-        return axios.get(
+      async function getData() {
+        return await axios.get(
           "https://54o76ppvn8.execute-api.ap-northeast-1.amazonaws.com/prod/bb-dojo",
           {
             params: { id: "dojo", query: "order by day desc limit 3" },
@@ -54,9 +62,7 @@
         const titleCell = document.createElement("td");
         const titleLink = document.createElement("a");
         let title = news.content.value;
-        if (title.length > 30) {
-          title = title.substring(0, 30) + "...";
-        }
+        title = sortedTitle(title, 30);
         titleLink.textContent = title;
         titleLink.href = news.url.value;
         titleCell.appendChild(titleLink);
