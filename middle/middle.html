@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>chiukan kadai</title>
+    <link rel="stylesheet" href="middle.css" />
+  </head>
+  <body>
+    <h1>最新情報</h1>
+    <table>
+      <tbody id="news-table"></tbody>
+    </table>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      // タイトルを短くにする関数
+      function sortedTitle(title, maxLength) {
+        if (title.length > maxLength) {
+          return title.substring(0, maxLength) + "...";
+        }
+        return title;
+      }
+
+      // データを取得する関数
+      async function getData() {
+        return await axios.get(
+          "https://54o76ppvn8.execute-api.ap-northeast-1.amazonaws.com/prod/bb-dojo",
+          {
+            params: { id: "dojo", query: "order by day desc limit 3" },
+          }
+        );
+      }
+
+      // データのチェックを行う関数
+      function checkData(news) {
+        if (!news.day) {
+          window.alert("day data が不足");
+          return false;
+        }
+        if (!news.category) {
+          window.alert("category data が不足");
+          return false;
+        }
+        if (!news.content) {
+          window.alert("content data が不足");
+          return false;
+        }
+        return true;
+      }
+
+      // 行を作成する関数
+      function createRow(news) {
+        const row = document.createElement("tr");
+        const dateCell = document.createElement("td");
+        dateCell.textContent = news.day.value;
+        row.appendChild(dateCell);
+
+        const categoryCell = document.createElement("td");
+        categoryCell.textContent = news.category.value;
+        categoryCell.className = news.label.value;
+        row.appendChild(categoryCell);
+
+        const titleCell = document.createElement("td");
+        const titleLink = document.createElement("a");
+        let title = news.content.value;
+        title = sortedTitle(title, 30);
+        titleLink.textContent = title;
+        titleLink.href = news.url.value;
+        titleCell.appendChild(titleLink);
+        row.appendChild(titleCell);
+        return row;
+      }
+
+      // データを描画する関数
+      function renderData(newsData) {
+        const newsTable = document.getElementById("news-table");
+        newsData.forEach((news) => {
+          if (!checkData(news)) {
+            return;
+          }
+          const row = createRow(news);
+          newsTable.appendChild(row);
+        });
+      }
+
+      // データの取得と描画の処理を実行
+      getData()
+        .then((response) => {
+          const newsData = response.data;
+          renderData(newsData);
+        })
+        .catch((error) => {
+          console.error("Error fetching news:", error);
+        });
+    </script>
+  </body>
+</html>
