@@ -7,9 +7,9 @@
     const subtable = action5Dropdown.map((value) => {
       return {
         value: {
-          'Action5': { type: 'DROP_DOWN', value: value },
-          '状況': { type: 'DROP_DOWN', value: ['未振り返り'] },
-          '課題': { type: 'SINGLE_LINE_TEXT', value: '' }
+          'Action5':{type: 'DROP_DOWN', value: value},
+          '状況':{type: 'DROP_DOWN', value: ['未振り返り']},
+          '課題':{type: 'SINGLE_LINE_TEXT', value: ''}
         }
       };
     });
