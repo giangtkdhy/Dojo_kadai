@@ -60,25 +60,17 @@
     <script>
       // ここに処理を記載する
       "use strict ";
-      /// チェックボックスの要素を取得
       const checkboxes = document.getElementsByClassName("chk");
-
-      // 金額を表示する要素を取得
       const priceElement = document.getElementById("price");
-      // 金額を再計算する関数
       function calculateTotal() {
-        let total = 3900; // 初期金額
-
-        // チェックボックスの値を取得して金額を加算
+        let total = 3900;
         for (let i = 0; i < checkboxes.length; i++) {
           if (checkboxes[i].checked) {
             total += parseInt(checkboxes[i].value);
           }
         }
-        // 金額を表示する
         priceElement.textContent = total;
       }
-      // チェックボックスの変更イベントリスナーの追加
       for (let i = 0; i < checkboxes.length; i++) {
         checkboxes[i].addEventListener("change", calculateTotal);
       }
